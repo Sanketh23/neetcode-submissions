@@ -1,0 +1,17 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        dp = [0] * len(nums)
+        if len(nums) == 0:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        max_money = dp[1]
+
+        for i in range(2, len(nums)):
+            dp[i] = max(dp[i-2] + nums[i], dp[i-1])
+            max_money = max(max_money, dp[i])
+            print(max_money)
+        
+        return max_money
